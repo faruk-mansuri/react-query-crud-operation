@@ -1,6 +1,6 @@
-import express from 'express';
 import * as dotenv from 'dotenv';
 dotenv.config();
+import express from 'express';
 import { nanoid } from 'nanoid';
 const app = express();
 import morgan from 'morgan';
