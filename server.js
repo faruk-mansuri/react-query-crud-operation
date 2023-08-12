@@ -1,6 +1,6 @@
+import express from 'express';
 import * as dotenv from 'dotenv';
 dotenv.config();
-import express from 'express';
 import { nanoid } from 'nanoid';
 const app = express();
 import morgan from 'morgan';
@@ -20,11 +20,10 @@ let taskList = [
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.resolve(__dirname, './client/dist')));
 
+app.use(express.json());
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
-
-app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello From Server...</h1>');
@@ -73,16 +72,9 @@ app.get('*', (req, res) => {
 app.use((req, res) => res.status(404).send('Route does not exist'));
 
 const port = process.env.PORT || 5000;
-
-const startApp = () => {
-  try {
-    app.listen(port, () => {
-      console.log(`Server is listening on port ${port}...`);
-    });
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-
-startApp();
+try {
+  app.listen(port, console.log(`Server is listening on port ${port}...`));
+} catch (error) {
+  console.log(error);
+  process.exit(1);
+}
