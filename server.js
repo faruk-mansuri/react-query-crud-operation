@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
-import cors from 'cors';
+// import cors from 'cors';
 import { nanoid } from 'nanoid';
 const app = express();
 import morgan from 'morgan';
@@ -24,7 +24,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
