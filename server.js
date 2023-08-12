@@ -1,10 +1,14 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
-// import cors from 'cors';
 import { nanoid } from 'nanoid';
 const app = express();
 import morgan from 'morgan';
+
+// public
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 let taskList = [
   { id: nanoid(), title: 'walk the dog', isDone: false },
@@ -13,10 +17,6 @@ let taskList = [
   { id: nanoid(), title: 'take a nap', isDone: false },
 ];
 
-// public
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import path from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.resolve(__dirname, './client/dist')));
 
@@ -24,7 +24,6 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
-// app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
