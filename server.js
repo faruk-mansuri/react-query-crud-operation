@@ -10,6 +10,13 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
+let taskList = [
+  { id: nanoid(), title: 'walk the dog', isDone: false },
+  { id: nanoid(), title: 'wash dishes', isDone: false },
+  { id: nanoid(), title: 'drink coffee', isDone: true },
+  { id: nanoid(), title: 'take a nap', isDone: false },
+];
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.resolve(__dirname, './client/dist')));
 
